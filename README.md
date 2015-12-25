@@ -1,2 +1,2 @@
-# jsx-promise
+# react-promise
 a react.js component for general promise
