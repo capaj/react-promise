@@ -1,0 +1,24 @@
+{
+  "name": "react-async",
+  "version": "0.0.1",
+  "description": "react.js component",
+  "main": "async.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capaj/react-async.git"
+  },
+  "keywords": [
+    "react",
+    "promise",
+    "q"
+  ],
+  "author": "capajj@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/capaj/react-async/issues"
+  },
+  "homepage": "https://github.com/capaj/react-async#readme"
+}
