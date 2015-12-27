@@ -4,10 +4,8 @@ class Async extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
-    // this.componentWillReceiveProps(props)
   }
   componentWillMount () {
-    console.log('componentWillMount')
     this.props.promise.then((res) => {
       this.setState({
         resolved: res,
@@ -23,8 +21,8 @@ class Async extends React.Component {
   render () {
     const {props, state} = this
     if (!state.finished) {
-      if (props.loading) {
-        return props.loading  // custom component to indicate load in progress
+      if (props.pendingRender) {
+        return props.pendingRender  // custom component to indicate load in progress
       }
       return <div></div>
     }
@@ -40,7 +38,7 @@ class Async extends React.Component {
 Async.propTypes = {
   then: PropTypes.func,
   catch: PropTypes.func,
-  loading: PropTypes.node,
+  pendingRender: PropTypes.node,
   promise: PropTypes.object
 }
 

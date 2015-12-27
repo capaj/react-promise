@@ -1,6 +1,6 @@
 {
   "name": "react-async",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react.js component",
   "main": "async.js",
   "scripts": {
@@ -20,5 +20,15 @@
   "bugs": {
     "url": "https://github.com/capaj/react-async/issues"
   },
-  "homepage": "https://github.com/capaj/react-async#readme"
+  "homepage": "https://github.com/capaj/react-async#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-register": "^6.3.13",
+    "chai": "^3.4.1",
+    "enzyme": "^1.2.0",
+    "mocha": "^2.3.4",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
 }
