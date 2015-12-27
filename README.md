@@ -22,6 +22,7 @@ class ExampleWithoutAsync extends React.Component {
     })
   }
   render () {
+    if (!this.state.val) return
     return <div>{this.state.val}</div>
   }
 ```
