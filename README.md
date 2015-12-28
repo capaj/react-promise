@@ -40,11 +40,11 @@ Much simpler, especially if your component is read-only, like the example.
 
 With jspm:
 ```
-jspm i npm:react-async
+jspm i npm:react-promise
 ```
 or with npm:
 ```
-npm i react-async
+npm i react-promise
 ```
 
 ## [Available props](https://github.com/capaj/react-async/blob/master/async.js#L48):
