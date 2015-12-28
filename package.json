@@ -1,10 +1,12 @@
 {
   "name": "react-async",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "react.js component",
   "main": "async.js",
   "scripts": {
-    "test": "mocha"
+    "test": "node run-tests",
+    "pretest": "node_modules/.bin/standard",
+    "precommit": "npm test"
   },
   "repository": {
     "type": "git",
@@ -27,8 +29,11 @@
     "babel-register": "^6.3.13",
     "chai": "^3.4.1",
     "enzyme": "^1.2.0",
+    "husky": "^0.10.2",
     "mocha": "^2.3.4",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-addons-test-utils": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "standard": "^5.4.1"
   }
 }

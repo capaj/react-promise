@@ -20,6 +20,7 @@ class Async extends React.Component {
   }
   render () {
     const {props, state} = this
+
     if (!state.finished) {
       if (props.pendingRender) {
         return props.pendingRender  // custom component to indicate load in progress
