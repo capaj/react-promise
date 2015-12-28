@@ -49,7 +49,7 @@ Async.propTypes = {
   then: PropTypes.func,
   catch: PropTypes.func,
   pendingRender: PropTypes.node,
-  promise: PropTypes.object
+  promise: PropTypes.object.isRequired
 }
 
 export default Async

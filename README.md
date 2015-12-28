@@ -36,9 +36,20 @@ const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => {return
 
 Much simpler, especially if your component is read-only, like the example.
 
+## install
+
+With jspm:
+```
+jspm i npm:react-async
+```
+or with npm:
+```
+npm i react-async
+```
+
 ## [Available props](https://github.com/capaj/react-async/blob/master/async.js#L48):
 
-- *promise* a promise you want to wait for
-- *then* runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
-- *catch* runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
-- *pendingRender*(optional) is a node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
+- **promise** a promise you want to wait for
+- **then**(optional) runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
+- **catch**(optional) runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
+- **pendingRender**(optional) is a node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
