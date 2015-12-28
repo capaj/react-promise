@@ -5,8 +5,15 @@ class Async extends React.Component {
     super(props)
     this.state = {}
   }
-  componentWillMount () {
-    this.props.promise.then((res) => {
+  componentWillReceiveProps (nP) {
+    if (nP.promise !== this.props.promise) {
+      this.state = {}
+      this.forceUpdate()
+      this.handlePromise(nP.promise)
+    }
+  }
+  handlePromise (prom) {
+    prom.then((res) => {
       this.setState({
         resolved: res,
         finished: true
@@ -18,9 +25,11 @@ class Async extends React.Component {
       })
     })
   }
+  componentWillMount () {
+    this.handlePromise(this.props.promise)
+  }
   render () {
     const {props, state} = this
-
     if (!state.finished) {
       if (props.pendingRender) {
         return props.pendingRender  // custom component to indicate load in progress
