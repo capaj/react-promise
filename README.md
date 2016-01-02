@@ -29,9 +29,9 @@ class ExampleWithoutAsync extends React.Component {
 
 and with react-async:
 ```javascript
-import Async from 'react-async'
+import Async from 'react-promise'
 
-const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => {return <div>{val}</div>}/>
+const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => <div>{val}</div>/>
 ```
 
 Much simpler, especially if your component is read-only, like the example.
