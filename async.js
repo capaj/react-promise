@@ -1,10 +1,12 @@
-"format es6"
+'format es6'
 import React, {PropTypes} from 'react'
 
 class Async extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      started: false
+    }
   }
   componentWillReceiveProps (nP) {
     if (nP.promise !== this.props.promise) {
@@ -14,6 +16,9 @@ class Async extends React.Component {
     }
   }
   handlePromise (prom) {
+    this.setState({
+      started: true
+    })
     prom.then((res) => {
       this.setState({
         resolved: res,
@@ -27,30 +32,37 @@ class Async extends React.Component {
     })
   }
   componentWillMount () {
-    this.handlePromise(this.props.promise)
+    if (this.props.promise) {
+      this.handlePromise(this.props.promise)
+    }
   }
   render () {
     const {props, state} = this
-    if (!state.finished) {
-      if (props.pendingRender) {
-        return props.pendingRender  // custom component to indicate load in progress
+    if (state.started) {
+      if (!state.finished) {
+        if (props.pendingRender) {
+          return props.pendingRender  // custom component to indicate load in progress
+        }
+        return <div></div>
       }
-      return <div></div>
-    }
-    if (props.then && state.resolved) {
-      return props.then(state.resolved)
-    }
-    if (props.catch && state.rejected) {
-      return props.catch(state.rejected)
+      if (props.then && state.resolved) {
+        return props.then(state.resolved)
+      }
+      if (props.catch && state.rejected) {
+        return props.catch(state.rejected)
+      }
+    } else {
+      return this.props.before(this.handlePromise.bind(this))
     }
   }
 }
 
 Async.propTypes = {
-  then: PropTypes.func,
-  catch: PropTypes.func,
-  pendingRender: PropTypes.node,
-  promise: PropTypes.object.isRequired
+  before: PropTypes.func, // renders it's return value before promise is handled
+  then: PropTypes.func, // renders it's return value when promise is resolved
+  catch: PropTypes.func, // renders it's return value when promise is rejected
+  pendingRender: PropTypes.node, // renders it's value when promise is pending
+  promise: PropTypes.object // promise itself
 }
 
 export default Async

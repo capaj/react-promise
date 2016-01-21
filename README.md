@@ -36,6 +36,23 @@ const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => <div>{v
 
 Much simpler, especially if your component is read-only, like the example.
 
+In case you need user input before you can make the async call, there is a `before` property. Assign a function into it if you need to render a form for example.
+```javascript
+<Async before={(handlePromise) => {
+  return <form>
+    <input></input>
+    <button onClick={() => {
+      handlePromise(Promise.resolve('awesome data'))
+    }}>do something async like a POST request</button>
+  </form>
+}}
+/>
+```
+The form is rendered before the promise is resolved. If you ever need to reset the Async to `before` after promise has resolved/rejected get the Async ref and use
+```javascript
+ref.setState({started: false})
+```
+
 ## install
 
 With jspm:
