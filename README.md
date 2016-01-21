@@ -1,4 +1,4 @@
-# react-async [![NPM badge](https://nodei.co/npm/react-promise.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-promise/)
+# react-promise [![NPM badge](https://nodei.co/npm/react-promise.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-promise/)
 a react.js component for general promise - no need for statefull component just to render a value hidden behind a promise.
 Let's consider a this trivial example:
 
