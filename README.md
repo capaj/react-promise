@@ -13,7 +13,7 @@ let prom = new Promise(function (resolve, reject) {
 
 and you want to make a component, which renders out in it's body 'a value'. Without react-async, such component looks like this:
 ```javascript
-class ExampleWithoutAsync extends React.Component {
+class ExampleWithoutAsync extends React.Component { // you can't use stateless component because you need a state
   constructor () {
     super()
     this.state = {}
@@ -34,7 +34,7 @@ import Async from 'react-promise'
 const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => <div>{val}</div>/>
 ```
 
-Much simpler, especially if your component is read-only, like the example.
+Much simpler, right?
 
 In case you need user input before you can make the async call, there is a `before` property. Assign a function into it if you need to render a form for example.
 ```javascript
