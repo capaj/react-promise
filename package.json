@@ -1,7 +1,7 @@
 {
   "name": "react-promise",
   "version": "1.1.0",
-  "description": "react.js component for rendering values behind promises",
+  "description": "react.js component for dealing with promises",
   "main": "async.js",
   "scripts": {
     "test": "node run-tests",

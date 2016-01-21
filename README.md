@@ -1,8 +1,6 @@
 # react-promise [![NPM badge](https://nodei.co/npm/react-promise.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-promise/)
-a react.js component for general promise - no need for statefull component just to render a value hidden behind a promise.
-Let's consider a this trivial example:
-
-you have a promise such as this
+a react.js component for general promise - no need for statefull component just to render a value hidden behind a promise or for a simple form.
+Let's consider a trivial example: you have a promise such as this
 ```javascript
 let prom = new Promise(function (resolve, reject) {
  setTimeout(function () {
