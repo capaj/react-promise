@@ -63,9 +63,10 @@ npm i react-promise
 ```
 
 ## [Available props](https://github.com/capaj/react-async/blob/master/async.js#L48):
+All props are optional
 
 - **promise** a promise you want to wait for
 - **before** if no promise is provided, Async will invoke this inside it's render method-use for forms and such
-- **then**(optional) runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
-- **catch**(optional) runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
-- **pendingRender**(optional) is a node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
+- **then** runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
+- **catch** runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
+- **pendingRender** is a node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
