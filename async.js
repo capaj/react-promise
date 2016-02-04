@@ -1,4 +1,3 @@
-'format es6'
 import React, {PropTypes} from 'react'
 
 class Async extends React.Component {
