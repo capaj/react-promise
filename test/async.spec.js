@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 'use strict'
 import React from 'react'
-import Async from '../async'
+import Async from '../src/async'
 import { describeWithDOM, mount } from 'enzyme'
 import {expect} from 'chai'
 
