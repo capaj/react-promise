@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class Async extends React.Component {
   constructor (props) {
@@ -42,7 +43,7 @@ class Async extends React.Component {
         if (props.pendingRender) {
           return props.pendingRender  // custom component to indicate load in progress
         }
-        return <div></div>
+        return <div />
       }
       if (props.then && state.resolved) {
         return props.then(state.resolved)

@@ -1,20 +1,18 @@
-var webpack = require('webpack')
-var env = process.env.NODE_ENV
+const webpack = require('webpack')
+const env = process.env.NODE_ENV
 
-var config = {
+const config = {
   entry: './src/async',
   module: {
     loaders: [
-      { test: /\.js$/, loaders: [ 'babel' ], exclude: /node_modules/ }
+      { test: /\.js$/, loaders: [ 'babel-loader' ], exclude: /node_modules/ }
     ]
   },
   output: {
     library: 'Async',
     libraryTarget: 'umd'
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
-  ]
+  plugins: []
 }
 
 if (env === 'production') {

@@ -2,10 +2,10 @@
 'use strict'
 import React from 'react'
 import Async from '../src/async'
-import { describeWithDOM, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import {expect} from 'chai'
 
-describeWithDOM('async', function () {
+describe('async', function () {
   let prom = new Promise(function (resolve, reject) {
     setTimeout(function () {
       resolve('a value')
@@ -13,17 +13,17 @@ describeWithDOM('async', function () {
   })
 
   it('should render empty div when promise is pending', function () {
-    const wrapper = mount(<Async promise={prom}/>)
+    const wrapper = mount(<Async promise={prom} />)
     expect(wrapper.html()).to.equal('<div></div>')
   })
 
   it('should render a supplied pendingRender prop when promise is pending', function () {
-    const wrapper = mount(<Async promise={prom} pendingRender={<span>Loading ...</span>}/>)
+    const wrapper = mount(<Async promise={prom} pendingRender={<span>Loading ...</span>} />)
     expect(wrapper.html()).to.equal('<span>Loading ...</span>')
   })
 
   it('should render a function in "then" when promise is resolved', function (done) {
-    const wrapper = mount(<Async promise={prom} then={(val) => <div>{val}</div>}/>)
+    const wrapper = mount(<Async promise={prom} then={(val) => <div>{val}</div>} />)
     setTimeout(() => {
       expect(wrapper.text()).to.equal('a value')
       done()
