@@ -44,10 +44,10 @@ class Async extends React.Component {
         }
         return <div></div>
       }
-      if (props.then && state.resolved) {
+      if (props.then && state.resolved !== undefined) {
         return props.then(state.resolved)
       }
-      if (props.catch && state.rejected) {
+      if (props.catch && state.rejected !== undefined) {
         return props.catch(state.rejected)
       }
     } else {
