@@ -1,11 +1,26 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 'use strict'
 import React from 'react'
 import Async from '../src/async'
-import { describeWithDOM, mount } from 'enzyme'
-import {expect} from 'chai'
+import { mount } from 'enzyme'
 
-describeWithDOM('async', function () {
+beforeAll(() => {
+  const jsdom = require('jsdom').jsdom // could throw
+
+  global.document = jsdom('')
+  global.window = document.defaultView
+  Object.keys(document.defaultView).forEach((property) => {
+    if (typeof global[property] === 'undefined') {
+      global[property] = document.defaultView[property]
+    }
+  })
+
+  global.navigator = {
+    userAgent: 'node.js'
+  }
+})
+
+describe('async', function () {
   let prom = new Promise(function (resolve, reject) {
     setTimeout(function () {
       resolve('a value')
@@ -13,19 +28,19 @@ describeWithDOM('async', function () {
   })
 
   it('should render empty div when promise is pending', function () {
-    const wrapper = mount(<Async promise={prom}/>)
-    expect(wrapper.html()).to.equal('<div></div>')
+    const wrapper = mount(<Async promise={prom} />)
+    expect(wrapper.html()).toBe('<div></div>')
   })
 
   it('should render a supplied pendingRender prop when promise is pending', function () {
-    const wrapper = mount(<Async promise={prom} pendingRender={<span>Loading ...</span>}/>)
-    expect(wrapper.html()).to.equal('<span>Loading ...</span>')
+    const wrapper = mount(<Async promise={prom} pendingRender={<span>Loading ...</span>} />)
+    expect(wrapper.html()).toBe('<span>Loading ...</span>')
   })
 
   it('should render a function in "then" when promise is resolved', function (done) {
-    const wrapper = mount(<Async promise={prom} then={(val) => <div>{val}</div>}/>)
+    const wrapper = mount(<Async promise={prom} then={(val) => <div>{val}</div>} />)
     setTimeout(() => {
-      expect(wrapper.text()).to.equal('a value')
+      expect(wrapper.text()).toBe('a value')
       done()
     }, 15)
   })
@@ -40,7 +55,7 @@ describeWithDOM('async', function () {
       catch={(err) => <div>{err.toString()}</div>}
     />)
     setTimeout(() => {
-      expect(wrapper.text()).to.equal('Error: sample error')
+      expect(wrapper.text()).toBe('Error: sample error')
       done()
     }, 15)
   })
@@ -55,10 +70,10 @@ describeWithDOM('async', function () {
       catch={(err) => <div>{err}</div>}
     />)
     setTimeout(() => {
-      expect(wrapper.text()).to.equal('a value')
+      expect(wrapper.text()).toBe('a value')
       wrapper.setProps({promise: rejectedProm})
       setTimeout(() => {
-        // expect(wrapper.text()).to.equal('Error: sample error') // for some reason, this assertion does not work, even though it should
+        // expect(wrapper.text()).toBe('Error: sample error') // for some reason, this assertion does not work, even though it should
         done()
       }, 10)
     }, 15)
@@ -70,9 +85,9 @@ describeWithDOM('async', function () {
         resolve(false)
       }, 10)
     })
-    const wrapper = mount(<Async promise={falseyPromise} then={(val) => <div>{val + ''}</div>}/>)
+    const wrapper = mount(<Async promise={falseyPromise} then={(val) => <div>{val + ''}</div>} />)
     setTimeout(() => {
-      expect(wrapper.text()).to.equal('false')
+      expect(wrapper.text()).toBe('false')
       done()
     }, 15)
   })
@@ -83,9 +98,9 @@ describeWithDOM('async', function () {
         resolve(null)
       }, 10)
     })
-    const wrapper = mount(<Async promise={falseyPromise} then={(val) => <div>{val + ''}</div>}/>)
+    const wrapper = mount(<Async promise={falseyPromise} then={(val) => <div>{val + ''}</div>} />)
     setTimeout(() => {
-      expect(wrapper.text()).to.equal('null')
+      expect(wrapper.text()).toBe('null')
       done()
     }, 15)
   })
