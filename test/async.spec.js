@@ -63,4 +63,30 @@ describeWithDOM('async', function () {
       }, 10)
     }, 15)
   })
+
+  it('should render a function in "then" when promise is resolved with a falsey value', function (done) {
+    const falseyPromise = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve(false)
+      }, 10)
+    })
+    const wrapper = mount(<Async promise={falseyPromise} then={(val) => <div>{val + ''}</div>}/>)
+    setTimeout(() => {
+      expect(wrapper.text()).to.equal('false')
+      done()
+    }, 15)
+  })
+
+  it('should render a function in "then" when promise is resolved with a null value', function (done) {
+    const falseyPromise = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve(null)
+      }, 10)
+    })
+    const wrapper = mount(<Async promise={falseyPromise} then={(val) => <div>{val + ''}</div>}/>)
+    setTimeout(() => {
+      expect(wrapper.text()).to.equal('null')
+      done()
+    }, 15)
+  })
 })
