@@ -70,3 +70,13 @@ All props are optional
 - **then** runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
 - **catch** runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
 - **pendingRender** is a node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
+
+## To use with Typescript
+
+```
+import Async, { Props as AsyncProps } from 'react-promise'
+
+const StringAsync = Async as { new (props: AsyncProps<string>): Async<string> }
+```
+
+The type used for the generic will be matched against the type for the promise's value. This workaround is necessary because currently there's no way to directly supply generic types in Typescript.
