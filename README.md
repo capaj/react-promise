@@ -31,7 +31,7 @@ and with react-async:
 ```javascript
 import Async from 'react-promise'
 
-const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => <div>{val}</div>/>
+const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => <div>{val}</div>}/>
 ```
 
 Much simpler, right?
