@@ -1,7 +1,7 @@
 /* eslint-env jest */
 'use strict'
 import React from 'react'
-import Async from '../src/async'
+import Async from '../src/react-promise'
 import { mount } from 'enzyme'
 
 beforeAll(() => {
