@@ -64,7 +64,7 @@ or with npm:
 npm i react-promise
 ```
 
-## [Available props](https://github.com/capaj/react-async/blob/master/async.js#L48):
+## [Available props](https://github.com/capaj/react-promise/blob/master/src/react-promise.js#L60):
 All props are optional
 
 - **promise** a promise you want to wait for
