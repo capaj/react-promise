@@ -1,6 +1,6 @@
 {
   "name": "react-promise",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "react.js component for dealing with promises",
   "main": "./dist/react-promise.cjs.js",
   "types": "./src/async.d.ts",
