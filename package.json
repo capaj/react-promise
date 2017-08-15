@@ -2,7 +2,7 @@
   "name": "react-promise",
   "version": "1.2.0",
   "description": "react.js component for dealing with promises",
-  "main": "./dist/react-promise.js",
+  "main": "./dist/react-promise.cjs.js",
   "types": "./src/async.d.ts",
   "module": "./dist/react-promise.es.js",
   "jspm": {
