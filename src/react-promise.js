@@ -1,33 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+const Status = {
+  none: 'none',
+  pending: 'pending',
+  rejected: 'rejected',
+  resolved: 'resolved'
+}
+
 class Async extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      started: false
+      status: Status.none
     }
   }
   componentWillReceiveProps (nP) {
     if (nP.promise !== this.props.promise) {
-      this.state = {}
+      this.state = {
+        status: Status.none
+      }
       this.forceUpdate()
       this.handlePromise(nP.promise)
     }
   }
   handlePromise (prom) {
     this.setState({
-      started: true
+      status: Status.pending
     })
     prom.then((res) => {
       this.setState({
-        resolved: res,
-        finished: true
+        status: Status.resolved,
+        value: res
       })
     }, (err) => {
       this.setState({
-        rejected: err,
-        finished: true
+        status: Status.rejected,
+        value: err
       })
     })
   }
@@ -38,22 +47,31 @@ class Async extends React.Component {
   }
   render () {
     const {props, state} = this
-    if (state.started) {
-      if (!state.finished) {
+
+    switch (state.status) {
+      case Status.none:
+        if (props.before) {
+          return props.before(this.handlePromise.bind(this))
+        }
+        break
+      case Status.pending:
         if (props.pendingRender) {
           return props.pendingRender  // custom component to indicate load in progress
         }
-        return <div />
-      }
-      if (props.then && state.resolved !== undefined) {
-        return props.then(state.resolved)
-      }
-      if (props.catch && state.rejected !== undefined) {
-        return props.catch(state.rejected)
-      }
-    } else {
-      return this.props.before(this.handlePromise.bind(this))
+        break
+      case Status.resolved:
+        if (props.then) {
+          return props.then(state.value)
+        }
+        break
+      case Status.rejected:
+        if (props.catch) {
+          return props.catch(state.value)
+        }
+        break
     }
+
+    return <div /> // return empty placeholder as a fallback
   }
 }
 
