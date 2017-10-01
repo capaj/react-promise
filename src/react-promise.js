@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Status = {
+const statusTypes = {
   none: 'none',
   pending: 'pending',
   rejected: 'rejected',
@@ -12,13 +12,13 @@ class Async extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      status: Status.none
+      status: statusTypes.none
     }
   }
   componentWillReceiveProps (nP) {
     if (nP.promise !== this.props.promise) {
       this.state = {
-        status: Status.none
+        status: statusTypes.none
       }
       this.forceUpdate()
       this.handlePromise(nP.promise)
@@ -26,16 +26,16 @@ class Async extends React.Component {
   }
   handlePromise (prom) {
     this.setState({
-      status: Status.pending
+      status: statusTypes.pending
     })
     prom.then((res) => {
       this.setState({
-        status: Status.resolved,
+        status: statusTypes.resolved,
         value: res
       })
     }, (err) => {
       this.setState({
-        status: Status.rejected,
+        status: statusTypes.rejected,
         value: err
       })
     })
@@ -49,22 +49,22 @@ class Async extends React.Component {
     const {props, state} = this
 
     switch (state.status) {
-      case Status.none:
+      case statusTypes.none:
         if (props.before) {
           return props.before(this.handlePromise.bind(this))
         }
         break
-      case Status.pending:
+      case statusTypes.pending:
         if (props.pendingRender) {
           return props.pendingRender  // custom component to indicate load in progress
         }
         break
-      case Status.resolved:
+      case statusTypes.resolved:
         if (props.then) {
           return props.then(state.value)
         }
         break
-      case Status.rejected:
+      case statusTypes.rejected:
         if (props.catch) {
           return props.catch(state.value)
         }
