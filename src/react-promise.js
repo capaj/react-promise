@@ -17,10 +17,9 @@ class Async extends React.Component {
   }
   componentWillReceiveProps (nP) {
     if (nP.promise !== this.props.promise) {
-      this.state = {
+      this.setState({
         status: statusTypes.none
-      }
-      this.forceUpdate()
+      })
       this.handlePromise(nP.promise)
     }
   }
@@ -28,17 +27,20 @@ class Async extends React.Component {
     this.setState({
       status: statusTypes.pending
     })
-    prom.then((res) => {
-      this.setState({
-        status: statusTypes.resolved,
-        value: res
-      })
-    }, (err) => {
-      this.setState({
-        status: statusTypes.rejected,
-        value: err
-      })
-    })
+    prom.then(
+      res => {
+        this.setState({
+          status: statusTypes.resolved,
+          value: res
+        })
+      },
+      err => {
+        this.setState({
+          status: statusTypes.rejected,
+          value: err
+        })
+      }
+    )
   }
   componentWillMount () {
     if (this.props.promise) {
@@ -46,7 +48,7 @@ class Async extends React.Component {
     }
   }
   render () {
-    const {props, state} = this
+    const { props, state } = this
 
     switch (state.status) {
       case statusTypes.none:
@@ -55,8 +57,8 @@ class Async extends React.Component {
         }
         break
       case statusTypes.pending:
-        if (props.pendingRender) {
-          return props.pendingRender  // custom component to indicate load in progress
+        if (props.pending) {
+          return props.pending
         }
         break
       case statusTypes.resolved:
@@ -71,7 +73,7 @@ class Async extends React.Component {
         break
     }
 
-    return <div /> // return empty placeholder as a fallback
+    return null
   }
 }
 
@@ -79,7 +81,7 @@ Async.propTypes = {
   before: PropTypes.func, // renders it's return value before promise is handled
   then: PropTypes.func, // renders it's return value when promise is resolved
   catch: PropTypes.func, // renders it's return value when promise is rejected
-  pendingRender: PropTypes.node, // renders it's value when promise is pending
+  pending: PropTypes.node, // renders it's value when promise is pending
   promise: PropTypes.object // promise itself
 }
 

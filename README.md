@@ -35,7 +35,7 @@ const ExampleWithAsync = (props) => <Async promise={prom} then={(val) => <div>{v
 ```
 
 Much simpler, right?
-
+Because the latter code handles that promise declaratively instead of imperatively.
 In case you need user input before you can make the async call, there is a `before` property. Assign a function into it if you need to render a form for example.
 ```javascript
 <Async before={(handlePromise) => {
@@ -50,16 +50,12 @@ In case you need user input before you can make the async call, there is a `befo
 ```
 The form is rendered before the promise is resolved. If you ever need to reset the Async to `before` after promise has resolved/rejected get the Async ref and use
 ```javascript
-ref.setState({started: false})
+ref.setState({status: 'none'})
 ```
 
 ## install
 
-With jspm:
-```
-jspm i npm:react-promise
-```
-or with npm:
+With npm:
 ```
 npm i react-promise
 ```
@@ -71,11 +67,11 @@ All props are optional
 - **before** if no promise is provided, Async will invoke this inside it's render method-use for forms and such
 - **then** runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
 - **catch** runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
-- **pendingRender** is a node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
+- **pending** is a React node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
 
 ## To use with Typescript
 
-```
+```typescript
 import Async, { Props as AsyncProps } from 'react-promise'
 
 const StringAsync = Async as { new (props: AsyncProps<string>): Async<string> }
