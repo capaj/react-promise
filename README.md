@@ -1,4 +1,4 @@
-# react-promise 
+# react-promise
 [![NPM badge](https://nodei.co/npm/react-promise.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-promise/)
 
 a react.js component for general promise - no need for stateful component just to render a value hidden behind a promise or for a simple form.
@@ -67,7 +67,7 @@ All props are optional
 - **before** if no promise is provided, Async will invoke this inside it's render method-use for forms and such
 - **then** runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
 - **catch** runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
-- **pending** is a React node which will be outputted from Async render method while promise is pending. If none is provided, defaults to `<div/>`
+- **pending** will run from Async render method while promise is pending.
 
 ## To use with Typescript
 

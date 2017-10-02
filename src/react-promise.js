@@ -58,7 +58,7 @@ class Async extends React.Component {
         break
       case statusTypes.pending:
         if (props.pending) {
-          return props.pending
+          return props.pending()
         }
         break
       case statusTypes.resolved:
@@ -81,7 +81,7 @@ Async.propTypes = {
   before: PropTypes.func, // renders it's return value before promise is handled
   then: PropTypes.func, // renders it's return value when promise is resolved
   catch: PropTypes.func, // renders it's return value when promise is rejected
-  pending: PropTypes.node, // renders it's value when promise is pending
+  pending: PropTypes.func, // renders it's value when promise is pending
   promise: PropTypes.object // promise itself
 }
 
