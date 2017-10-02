@@ -5,7 +5,7 @@ export interface Props<T> {
   before?: (handlePromise: () => void) => React.ReactNode
   then?: (value: T) => React.ReactNode
   catch?: (err: any) => React.ReactNode
-  pending?: React.ReactNode
+  pending?: () => React.ReactNode
 }
 
 export interface State {

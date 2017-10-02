@@ -43,7 +43,7 @@ describe('async', function () {
 
   it('should render a supplied pending prop when promise is pending', function () {
     const wrapper = mount(
-      <Async promise={prom()} pending={<span>Loading ...</span>} />
+      <Async promise={prom()} pending={() => <span>Loading ...</span>} />
     )
     expect(wrapper.html()).toBe('<span>Loading ...</span>')
   })
