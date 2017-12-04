@@ -29,16 +29,20 @@ class Async extends React.Component {
     })
     prom.then(
       res => {
-        this.setState({
-          status: statusTypes.resolved,
-          value: res
-        })
+        if (!this.unmounted) {
+          this.setState({
+            status: statusTypes.resolved,
+            value: res
+          })
+        }
       },
       err => {
-        this.setState({
-          status: statusTypes.rejected,
-          value: err
-        })
+        if (!this.unmounted) {
+          this.setState({
+            status: statusTypes.rejected,
+            value: err
+          })
+        }
       }
     )
   }
@@ -47,6 +51,10 @@ class Async extends React.Component {
       this.handlePromise(this.props.promise)
     }
   }
+  componentWillUnmount () {
+    this.unmounted = true
+  }
+
   render () {
     const { props, state } = this
 
