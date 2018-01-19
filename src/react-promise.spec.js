@@ -6,51 +6,33 @@ import Async from '../src/react-promise'
 import Enzyme, { mount } from 'enzyme'
 Enzyme.configure({ adapter: new Adapter() })
 
-beforeAll(() => {
-  const jsdom = require('jsdom').jsdom // could throw
-
-  global.document = jsdom('')
-  global.window = document.defaultView
-  Object.keys(document.defaultView).forEach(property => {
-    if (typeof global[property] === 'undefined') {
-      global[property] = document.defaultView[property]
-    }
-  })
-
-  global.navigator = {
-    userAgent: 'node.js'
-  }
-})
-
-describe('async', function () {
+describe('async', function() {
   let prom = resolveValue =>
-    new Promise(function (resolve, reject) {
-      setTimeout(function () {
+    new Promise(function(resolve, reject) {
+      setTimeout(function() {
         resolve(resolveValue)
       }, 10)
     })
   let rejectedProm = rejectValue =>
-    new Promise(function (resolve, reject) {
-      setTimeout(function () {
+    new Promise(function(resolve, reject) {
+      setTimeout(function() {
         reject(rejectValue)
       }, 10)
     })
 
-  it('should render nothing when promise is pending', function () {
+  it('should render nothing when promise is pending', function() {
     const wrapper = mount(<Async promise={prom()} />)
     expect(wrapper.html()).toBe(null)
   })
 
-  it('should render a supplied pending prop when promise is pending', function () {
+  it('should render a supplied pending prop when promise is pending', function() {
     const wrapper = mount(
       <Async promise={prom()} pending={<span>Loading ...</span>} />
     )
     expect(wrapper.html()).toBe('<span>Loading ...</span>')
   })
 
-  it('should render a function in "then" when promise is resolved', function (
-    done
-  ) {
+  it('should render a function in "then" when promise is resolved', function(done) {
     const wrapper = mount(
       <Async promise={prom('a value')} then={val => <div>{val}</div>} />
     )
@@ -60,9 +42,7 @@ describe('async', function () {
     }, 15)
   })
 
-  it('should render a function in "catch" when promise is rejected', function (
-    done
-  ) {
+  it('should render a function in "catch" when promise is rejected', function(done) {
     const wrapper = mount(
       <Async
         promise={rejectedProm(new Error('sample error'))}
@@ -76,9 +56,7 @@ describe('async', function () {
     }, 15)
   })
 
-  it('should rerender with a newly rejected value if it receives a new failed promise via props', function (
-    done
-  ) {
+  it('should rerender with a newly rejected value if it receives a new failed promise via props', function(done) {
     const wrapper = mount(
       <Async
         promise={prom('a value')}
@@ -96,9 +74,7 @@ describe('async', function () {
     }, 15)
   })
 
-  it('should render a function in "then" when promise is resolved with a falsey value', function (
-    done
-  ) {
+  it('should render a function in "then" when promise is resolved with a falsey value', function(done) {
     const wrapper = mount(
       <Async promise={prom(false)} then={val => <div>{String(val)}</div>} />
     )
@@ -108,9 +84,7 @@ describe('async', function () {
     }, 15)
   })
 
-  it('should render a function in "then" when promise is resolved with a null value', function (
-    done
-  ) {
+  it('should render a function in "then" when promise is resolved with a null value', function(done) {
     const wrapper = mount(
       <Async promise={prom(null)} then={val => <div>{String(val)}</div>} />
     )
@@ -120,9 +94,7 @@ describe('async', function () {
     }, 15)
   })
 
-  it('should render a function in "then" when promise is resolved with an undefined value', function (
-    done
-  ) {
+  it('should render a function in "then" when promise is resolved with an undefined value', function(done) {
     const wrapper = mount(
       <Async promise={prom(undefined)} then={val => <div>{String(val)}</div>} />
     )
