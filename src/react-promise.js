@@ -24,11 +24,15 @@ class Async extends React.Component {
     }
   }
   handlePromise (prom) {
+    this.promise = prom
     this.setState({
       status: statusTypes.pending
     })
     prom.then(
       res => {
+        if (this.promise !== prom) {
+          return // this promise has been switched for some other before it resolved, so we can ignore this
+        }
         if (!this.unmounted) {
           this.setState({
             status: statusTypes.resolved,
@@ -37,6 +41,9 @@ class Async extends React.Component {
         }
       },
       err => {
+        if (this.promise !== prom) {
+          return // this promise has been switched for some other before it rejected, so we can ignore this
+        }
         if (!this.unmounted) {
           this.setState({
             status: statusTypes.rejected,
