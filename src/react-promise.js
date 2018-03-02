@@ -31,7 +31,7 @@ class Async extends React.Component {
     prom.then(
       res => {
         if (this.promise !== prom) {
-          return // this promise has been switched for some other before it resolved, so we can ignore this
+          return // this promise has been switched for some other before it resolved, so we can early return
         }
         if (!this.unmounted) {
           this.setState({
@@ -42,7 +42,7 @@ class Async extends React.Component {
       },
       err => {
         if (this.promise !== prom) {
-          return // this promise has been switched for some other before it rejected, so we can ignore this
+          return // this promise has been switched for some other before it rejected, so we can early return
         }
         if (!this.unmounted) {
           this.setState({
@@ -73,7 +73,17 @@ class Async extends React.Component {
         break
       case statusTypes.pending:
         if (props.pending) {
-          return props.pending
+          if (typeof props.pending === 'function') {
+            return props.pending()
+          } else {
+            return props.pending
+          }
+        } else if (Async.defaultPending) {
+          if (typeof Async.defaultPending === 'function') {
+            return Async.defaultPending()
+          } else {
+            return Async.defaultPending
+          }
         }
         break
       case statusTypes.resolved:
@@ -96,7 +106,7 @@ Async.propTypes = {
   before: PropTypes.func, // renders it's return value before promise is handled
   then: PropTypes.func, // renders it's return value when promise is resolved
   catch: PropTypes.func, // renders it's return value when promise is rejected
-  pending: PropTypes.node, // renders it's value when promise is pending
+  pending: PropTypes.oneOfType([PropTypes.node, PropTypes.func]), // renders it's value when promise is pending
   promise: PropTypes.object // promise itself
 }
 

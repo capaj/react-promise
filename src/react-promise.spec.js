@@ -25,6 +25,13 @@ describe('async', function () {
     expect(wrapper.html()).toBe(null)
   })
 
+  it('should render defaultPending when promise is pending', () => {
+    Async.defaultPending = 'Loooading'
+    const wrapper = mount(<Async promise={prom()} />)
+
+    expect(wrapper.text()).toBe(Async.defaultPending)
+  })
+
   it('should render a supplied pending prop when promise is pending', function () {
     const wrapper = mount(
       <Async promise={prom()} pending={<span>Loading ...</span>} />
