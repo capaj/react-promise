@@ -82,7 +82,7 @@ npm i react-promise
 You can define a single pending state for all instances of `<Async />` by defining a `defaultPending` property on the `Async` component class. Full example here:
 
 ```javascript
-import Async from '../src/react-promise'
+import Async from 'react-promise'
 
 Async.defaultPending = (
   <h1>my uber loading spinner/text/whatever used for all</h1>
