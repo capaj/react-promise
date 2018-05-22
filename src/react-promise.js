@@ -9,13 +9,13 @@ const statusTypes = {
 }
 
 class Async extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       status: statusTypes.none
     }
   }
-  componentWillReceiveProps (nP) {
+  componentWillReceiveProps(nP) {
     if (nP.promise !== this.props.promise) {
       this.setState({
         status: statusTypes.none
@@ -23,7 +23,7 @@ class Async extends React.Component {
       this.handlePromise(nP.promise)
     }
   }
-  handlePromise (prom) {
+  handlePromise(prom) {
     this.promise = prom
     this.setState({
       status: statusTypes.pending
@@ -53,16 +53,16 @@ class Async extends React.Component {
       }
     )
   }
-  componentWillMount () {
+  componentWillMount() {
     if (this.props.promise) {
       this.handlePromise(this.props.promise)
     }
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unmounted = true
   }
 
-  render () {
+  render() {
     const { props, state } = this
 
     switch (state.status) {
