@@ -5,7 +5,7 @@ export interface Props<T> {
   before?: (handlePromise: () => void) => React.ReactNode
   then?: (value: T) => React.ReactNode
   catch?: (err: any) => React.ReactNode
-  pending?: () => React.ReactNode | React.ReactNode
+  pending?: (() => React.ReactNode) | React.ReactNode
 }
 
 export interface State {
@@ -13,7 +13,7 @@ export interface State {
 }
 
 declare class Async<T> extends React.Component<Props<T>, State> {
-  defaultPending: () => React.ReactNode | React.ReactNode
+  static defaultPending: (() => React.ReactNode) | React.ReactNode
 }
 
 export default Async
