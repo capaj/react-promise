@@ -12,7 +12,8 @@ export interface State {
   status: 'none' | 'pending' | 'resolved' | 'rejected'
 }
 
-declare class Async<T> extends React.Component<Props<T>, State> {
+
+export declare class Async<T> extends React.Component<Props<T>, State> {
   static defaultPending: (() => React.ReactNode) | React.ReactNode
 }
 

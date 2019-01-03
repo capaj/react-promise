@@ -8,7 +8,7 @@ const statusTypes = {
   resolved: 'resolved'
 }
 
-class Async extends React.Component {
+export class Async extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -109,5 +109,8 @@ Async.propTypes = {
   pending: PropTypes.oneOfType([PropTypes.node, PropTypes.func]), // renders it's value when promise is pending
   promise: PropTypes.object // promise itself
 }
+
+// Ensures named exports compatibility with the CommonJS-style `module.exports = Async;`
+Async.Async = Async
 
 export default Async
