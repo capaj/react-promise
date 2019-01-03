@@ -5,15 +5,16 @@ export interface Props<T> {
   before?: (handlePromise: () => void) => React.ReactNode
   then?: (value: T) => React.ReactNode
   catch?: (err: any) => React.ReactNode
-  pending?: () => React.ReactNode | React.ReactNode
+  pending?: (() => React.ReactNode) | React.ReactNode
 }
 
 export interface State {
   status: 'none' | 'pending' | 'resolved' | 'rejected'
 }
 
-export class Async<T> extends React.Component<Props<T>, State> {
-  defaultPending: () => React.ReactNode | React.ReactNode
+
+export declare class Async<T> extends React.Component<Props<T>, State> {
+  static defaultPending: (() => React.ReactNode) | React.ReactNode
 }
 
 export default Async

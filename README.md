@@ -20,6 +20,8 @@ class ExampleWithoutAsync extends React.Component { // you can't use stateless c
   constructor () {
     super()
     this.state = {}
+  }
+  componentDidMount() {
     prom.then((value) => {
       this.setState({val: value})
     })
@@ -41,7 +43,7 @@ const ExampleWithAsync = props => (
 ```
 
 Much simpler, right?
-Because the latter code handles that promise declaratively instead of imperatively.
+Because the latter code handles that promise declaratively instead of relying on react lifecycle hooks.
 In case you need user input before you can make the async call, there is a `before` property. Assign a function into it if you need to render a form for example.
 
 ```javascript
