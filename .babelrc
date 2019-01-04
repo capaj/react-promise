@@ -1,22 +1,10 @@
 {
   "env": {
     "rollup": {
-      "presets": [
-        [
-          "es2015",
-          {
-            "modules": false
-          }
-        ],
-        "react"
-      ]
-    }
-    ,
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    },
     "test": {
-      "presets": [
-        "es2015",
-        "react"
-      ]
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
     }
   }
 }
