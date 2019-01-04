@@ -11,7 +11,7 @@
     "format": "esm"
   },
   "scripts": {
-    "test": "BABEL_ENV=test jest",
+    "test": "jest",
     "showcase": "cd showcase && npx webpack-dev-server",
     "precommit": "npm test",
     "build": "microbundle",
