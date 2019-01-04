@@ -95,18 +95,16 @@ Async.defaultPending = (
 
 All props are optional
 
-* **promise** a promise you want to wait for
-* **before** if no promise is provided, Async will invoke this inside it's render method-use for forms and such
-* **then** runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
-* **catch** runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
-* **pending** can be a React node which will be outputted from Async render method while promise is pending. Can be a function too. If none is provided and `defaultPending` is set, then outputs the default.
+- **promise** a promise you want to wait for
+- **before** if no promise is provided, Async will invoke this inside it's render method-use for forms and such
+- **then** runs when promise is resolved. Async will run function provided in it's render passing a resolved value as first parameter.
+- **catch** runs when promise is rejected. Async will run function provided in it's render passing an error as first parameter.
+- **pending** can be a React node which will be outputted from Async render method while promise is pending. Can be a function too. If none is provided and `defaultPending` is set, then outputs the default.
 
 ## To use with Typescript
 
 ```typescript
-import Async, { Props as AsyncProps } from 'react-promise'
+import Async from 'react-promise'
 
-const StringAsync = Async as { new (props: AsyncProps<string>): Async<string> }
+// TODO
 ```
-
-The type used for the generic will be matched against the type for the promise's value. This workaround is necessary because currently there's no way to directly supply generic types in Typescript.
