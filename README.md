@@ -2,7 +2,7 @@
 
 ## Deprecation notice
 
-While this library worked okay, since react 16.8.0 hooks are more natural way of handling state. So if you can, use something like [useAsync](https://github.com/streamich/react-use/blob/master/docs/useAsync.md)
+While this library works okay, there is now a better way to handle promises. Since react 16.8.0 hooks are more natural way of handling state. So if you can, use something like [useAsync](https://github.com/streamich/react-use/blob/master/docs/useAsync.md)
 
 
 [![NPM badge](https://nodei.co/npm/react-promise.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-promise/)
