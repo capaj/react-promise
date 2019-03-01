@@ -1,5 +1,10 @@
 # react-promise
 
+## Deprecation notice
+
+While this library worked okay, since react 16.8.0 hooks are more natural way of handling state. So if you can, use something like [useAsync](https://github.com/streamich/react-use/blob/master/docs/useAsync.md)
+
+
 [![NPM badge](https://nodei.co/npm/react-promise.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-promise/)
 
 a react.js component for general promise - no need for stateful component just to render a value hidden behind a promise or for a simple form.
