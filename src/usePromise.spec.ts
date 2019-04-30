@@ -40,4 +40,25 @@ describe('usePromise', () => {
       }, 50)
     })
   })
+
+  it('works when providing a promise thunk', (done) => {
+    let promThunk = () =>
+      new Promise((resolve) => {
+        setTimeout(function() {
+          act(() => {
+            resolve('a value from promise returning thunk')
+          })
+        }, 49)
+      })
+
+    renderHook(() => {
+      act(() => {
+        expect(usePromise(promThunk)).toMatchSnapshot()
+      })
+
+      setTimeout(() => {
+        done()
+      }, 50)
+    })
+  })
 })

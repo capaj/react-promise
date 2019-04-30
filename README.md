@@ -27,7 +27,7 @@ class ExampleWithoutAsync extends React.Component { // you can't use stateless c
     })
   }
   render () {
-    if (!this.state.val) return
+    if (!this.state.val) return null
     return <div>{this.state.val}</div>
   }
 
@@ -40,19 +40,31 @@ and with react-promise:
 import Async from 'react-promise';
 
 const ExampleWithAsync = (props) => {
-  const {value} = usePromise<string>(prom)
-
+  const {value, loading} = usePromise<string>(prom)
+  if (loading) return null
   return <div>{value}</div>}
 }
 ```
 
-Full state object returned by the hook looks like:
+## API
+
+The only argument can be a promise or a promise resolving thunk:
+
+```ts
+usePromise<T>(
+  promiseOrFn: (() => Promise<T>) | Promise<T>
+)
+```
+
+it might be desirable to let the usePromise call the promise returnig function, because you often don't want to do that inside the render of your functional component.
+
+Full state object interface returned by the hook looks like:
 
 ```ts
 {
   loading: boolean
   error: Error | null
-  value: T | undefined
+  value: T | undefined // where T is your shape of the resolved data you expect obviously
 }
 ```
 

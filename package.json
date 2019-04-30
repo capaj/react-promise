@@ -1,6 +1,6 @@
 {
   "name": "react-promise",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "source": "src/usePromise.ts",
   "main": "dist/cjs/usePromise.js",
   "module": "dist/esm/usePromise.js",
@@ -13,7 +13,8 @@
     "prepare": "npm run build",
     "build:esm": "tsc --module esnext --target esnext --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
-    "test": "jest"
+    "test": "jest",
+    "jw": "jest --watch"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",

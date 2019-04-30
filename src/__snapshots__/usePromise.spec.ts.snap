@@ -31,3 +31,19 @@ Object {
   "value": "a value",
 }
 `;
+
+exports[`usePromise works when providing a promise thunk 1`] = `
+Object {
+  "error": null,
+  "loading": true,
+  "value": undefined,
+}
+`;
+
+exports[`usePromise works when providing a promise thunk 2`] = `
+Object {
+  "error": null,
+  "loading": false,
+  "value": "a value from promise returning thunk",
+}
+`;
