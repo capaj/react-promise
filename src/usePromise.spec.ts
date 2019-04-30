@@ -18,7 +18,7 @@ describe('usePromise', () => {
 
       setTimeout(() => {
         done()
-      }, 50)
+      }, 60)
     })
   })
 
@@ -37,7 +37,7 @@ describe('usePromise', () => {
 
       setTimeout(() => {
         done()
-      }, 50)
+      }, 60)
     })
   })
 
@@ -58,7 +58,7 @@ describe('usePromise', () => {
 
       setTimeout(() => {
         done()
-      }, 50)
+      }, 60)
     })
   })
 })

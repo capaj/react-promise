@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 export default function usePromise<T>(
   promiseOrFn: (() => Promise<T>) | Promise<T>
@@ -16,10 +16,9 @@ export default function usePromise<T>(
     error: null,
     value: undefined
   })
-
+  const isMounted = useRef(false)
   useEffect(() => {
-    let unmounted = false
-
+    isMounted.current = true
     if (!promiseOrFn) {
       setState({
         loading: false,
@@ -43,7 +42,7 @@ export default function usePromise<T>(
 
       promise
         .then((value) => {
-          if (!unmounted) {
+          if (isMounted.current) {
             setState({
               loading: false,
               error: null,
@@ -52,7 +51,7 @@ export default function usePromise<T>(
           }
         })
         .catch((error) => {
-          if (!unmounted) {
+          if (isMounted.current) {
             setState({
               loading: false,
               error,
@@ -63,7 +62,7 @@ export default function usePromise<T>(
     }
 
     return () => {
-      unmounted = true
+      isMounted.current = false
     }
   }, [promiseOrFn])
 

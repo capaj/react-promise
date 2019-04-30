@@ -1,6 +1,6 @@
 {
   "name": "react-promise",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "source": "src/usePromise.ts",
   "main": "dist/cjs/usePromise.js",
   "module": "dist/esm/usePromise.js",
