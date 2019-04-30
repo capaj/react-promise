@@ -13,7 +13,7 @@ let prom = new Promise(function(resolve, reject) {
 })
 ```
 
-and you want to make a component, which renders out in it's body 'a value'. Without react-promise, such component looks like this:
+and you want to make a component, which renders out in it's body 'a value'. Without react-promise, such component may look like this:
 
 ```javascript
 class ExampleWithoutAsync extends React.Component { // you can't use stateless component because you need a state
