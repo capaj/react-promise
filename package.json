@@ -2,10 +2,9 @@
   "name": "react-promise",
   "version": "3.0.0",
   "source": "src/usePromise.ts",
-  "main": "dist/react-promise.js",
-  "umd:main": "dist/react-promise.umd.production.js",
-  "module": "dist/react-promise.es.production.js",
-  "typings": "dist/react-promise.d.ts",
+  "main": "dist/cjs/usePromise.js",
+  "module": "dist/esm/usePromise.js",
+  "typings": "dist/esm/usePromise.d.ts",
   "files": [
     "dist"
   ],
