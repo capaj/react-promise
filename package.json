@@ -1,0 +1,38 @@
+{
+  "name": "react-promise",
+  "version": "3.0.0",
+  "source": "src/usePromise.ts",
+  "main": "dist/react-promise.js",
+  "umd:main": "dist/react-promise.umd.production.js",
+  "module": "dist/react-promise.es.production.js",
+  "typings": "dist/react-promise.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn build:esm && yarn build:cjs",
+    "prepare": "npm run build",
+    "build:esm": "tsc --module esnext --target esnext --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.12",
+    "@types/react": "^16.8.15",
+    "husky": "^2.1.0",
+    "jest": "^24.7.1",
+    "microbundle": "^0.11.0",
+    "prettier": "^1.17.0",
+    "pretty-quick": "^1.10.0",
+    "react": "^16.8.6",
+    "react-hooks-testing-library": "^0.5.0",
+    "react-test-renderer": "^16.8.6",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`usePromise works for rejected promise 1`] = `
+Object {
+  "error": null,
+  "loading": true,
+  "value": undefined,
+}
+`;
+
+exports[`usePromise works for rejected promise 2`] = `
+Object {
+  "error": [Error: an error],
+  "loading": false,
+  "value": undefined,
+}
+`;
+
+exports[`usePromise works for resolved promise 1`] = `
+Object {
+  "error": null,
+  "loading": true,
+  "value": undefined,
+}
+`;
+
+exports[`usePromise works for resolved promise 2`] = `
+Object {
+  "error": null,
+  "loading": false,
+  "value": "a value",
+}
+`;
