@@ -37,7 +37,7 @@ class ExampleWithoutAsync extends React.Component { // you can't use stateless c
 and with react-promise:
 
 ```tsx
-import Async from 'react-promise';
+import usePromise from 'react-promise';
 
 const ExampleWithAsync = (props) => {
   const {value, loading} = usePromise<string>(prom)
