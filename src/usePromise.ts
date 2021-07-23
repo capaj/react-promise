@@ -1,17 +1,23 @@
 import { useEffect, useState, useRef } from 'react'
 
+type PromiseState<T> = {
+  loading: true
+  error: null
+  value: undefined
+} | {
+  loading: false
+  error: null
+  value: T
+} | {
+  loading: false
+  error: Error
+  value: undefined
+};
+
 export default function usePromise<T>(
   promiseOrFn: (() => Promise<T>) | Promise<T>
-): {
-  loading: boolean
-  error: Error | null
-  value: T | undefined
-} {
-  const [state, setState] = useState<{
-    loading: boolean
-    error: Error | null
-    value: T | undefined
-  }>({
+): PromiseState<T> {
+  const [state, setState] = useState<PromiseState<T>>({
     loading: !!promiseOrFn,
     error: null,
     value: undefined
@@ -22,7 +28,7 @@ export default function usePromise<T>(
     if (!promiseOrFn) {
       setState({
         loading: false,
-        error: null,
+        error: new TypeError(`The argument passed to usePromise must be either a promise or a function, but you passed a ${typeof promiseOrFn}`),
         value: undefined
       })
     } else {
