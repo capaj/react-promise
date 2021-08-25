@@ -8,6 +8,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/capaj/react-promise.git"
+  },
   "scripts": {
     "build": "yarn build:esm && yarn build:cjs",
     "prepare": "npm run build",
